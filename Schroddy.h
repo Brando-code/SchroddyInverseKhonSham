@@ -5,7 +5,6 @@
  *      Author: brando
  */
 #pragma once
-#include <vector>
 
 class InitialPot;
 class Schroddy;
@@ -62,7 +61,7 @@ public:
 
 private:
     Schroddy();
-    InitialPot* m_pot;
+    const InitialPot* m_pot;
     unsigned int m_nQuant;
 };
 

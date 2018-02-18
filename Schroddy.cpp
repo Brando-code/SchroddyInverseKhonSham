@@ -5,14 +5,10 @@
  *      Author: brando
  */
 //Class for Schrodinger equation solver
-//# include <math.h>
-//# include <stdlib.h>
-//# include <stdio.h>
 # include <iostream>
 # include "Potentials.h"
 # include "Parameters.h"
 # include "Schroddy.h"
-//# include <cmath>
 # include <vector>
 # include <fstream>
 # define MAX(a, b) (((a) > (b)) ? (a) : (b))
@@ -53,7 +49,8 @@ double Schroddy::solveSchroddyByRK(double x0, double x1, double psi0, double psi
 	bool Limits_are_defined = false;
 	double trialEigenvalue;
 	double normalCoef;
-	unsigned int nodes, step = 1000 /*Parameters::stepH*/, Nstep = (x1-x0)/step;
+	unsigned int nodes;
+	int step = 1000 /*Parameters::stepH*/,Nstep = (x1-x0)/step;
 	const double factor = 2*Parameters::mn/(Parameters::hbarc*Parameters::hbarc);
 	double runningX = x0, runningPsi = psi0, runningPsiPrime = psiPrime0, psiR = 0.0 /*Parameters::psiRight*/;
 	std::vector<double> psiArray;
@@ -61,7 +58,7 @@ double Schroddy::solveSchroddyByRK(double x0, double x1, double psi0, double psi
 	std::vector<double> normalPsi;
 	psiArray.push_back(psi0);
 
-	for(int i = 1; i <= m_nQuant; ++i)
+	for(unsigned int i = 1; i <= m_nQuant; ++i)
 	{
 		Limits_are_defined = false;
 		while (Limits_are_defined == false)
@@ -150,7 +147,7 @@ double Schroddy::solveSchroddyByRK(double x0, double x1, double psi0, double psi
 		{
 			normalPsi.push_back(normalCoef*psiArray[i]);
 		}
-	} return 0;//return normalPsi;
+	}//return normalPsi;
 
     std::vector <double>::iterator walk1 = eigenEnergies.begin();
     std::vector <double>::iterator walk2 = normalPsi.begin();
@@ -161,7 +158,7 @@ double Schroddy::solveSchroddyByRK(double x0, double x1, double psi0, double psi
     	walk1++;
     	walk2++;
     }
-}
+} return 0;
 
 
 
