@@ -5,6 +5,7 @@
  *      Author: brando
  */
 #pragma once
+# include <vector>
 
 class InitialPot;
 class Schroddy;
@@ -55,7 +56,8 @@ class Schroddy
 {
 public:
     Schroddy(const InitialPot& pot, unsigned int nQuant);
-    double solveSchroddyByRK(double x0, double x1, double psi0, double psiPrime0) const; //psiPrime0 is boundary condition on first derivative of eigenfunction
+    std::vector<double> solveSchroddyByRK(double x0, double x1, double psi0, double psiPrime0) const; //psiPrime0 is boundary condition on first derivative of eigenfunction
+    std::vector<double> solveSchroddyByNV (double psiL, double psiR) const;
 
     ~Schroddy();
 
